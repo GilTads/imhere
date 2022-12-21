@@ -8,19 +8,20 @@ export function Home () {
 
   // O useState entrega um array contendo duas informações,
   // 1º - o estado; 2º uma função que atualiza o estado ;
-  const [participants, setParticipants] = useState(['Ali Alhjazihi']);
+  const [participants, setParticipants] = useState<string[]>([]); // Estado que controla a lista
+  const [participantName, setParticipantName] = useState(''); // Estado que controla o input text
 
 
 
+  function handleParticipantAdd () {
 
-  function handleParticipantAdd (participant:string) {
-
-    if (participants.includes("Gil Santos")) {
+    if (participants.includes(participantName)) {
       return Alert.alert("Participante já existe", "Já existe um participante na lista com esse nome" )
     }
 
     // Conceito de imutabilidade
-    setParticipants(prevState => [...prevState, 'Ana']); 
+    setParticipants(prevState => [...prevState, participantName]); 
+    setParticipantName('');
     
   }
 
@@ -52,10 +53,12 @@ export function Home () {
           style={styles.input}
           placeholder="Nome do participante"
           placeholderTextColor="#6B6B6B"
+          onChangeText={setParticipantName} 
+          value={participantName}
         />
 
         <TouchableOpacity style={styles.button} 
-          onPress={() => handleParticipantAdd("Adicionou")}>
+          onPress={handleParticipantAdd}>
           <Text style={styles.buttonText}>
             +
           </Text>
