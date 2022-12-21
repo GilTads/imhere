@@ -1,10 +1,17 @@
+import React, { useState } from 'react'
 import { Alert, FlatList, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import { Participant } from '../../components/Participant';
 import { styles } from './styles';
 
 export function Home () {
-  const participants = ['Ali Alhjazihi'];
+
+  // O useState entrega um array contendo duas informações,
+  // 1º - o estado; 2º uma função que atualiza o estado ;
+  const [participants, setParticipants] = useState(['Ali Alhjazihi']);
+
+
+
 
   function handleParticipantAdd (participant:string) {
 
@@ -12,9 +19,8 @@ export function Home () {
       return Alert.alert("Participante já existe", "Já existe um participante na lista com esse nome" )
     }
 
-    participants.push('Ana');
-
-    console.log(participants);
+    // Conceito de imutabilidade
+    setParticipants(prevState => [...prevState, 'Ana']); 
     
   }
 
