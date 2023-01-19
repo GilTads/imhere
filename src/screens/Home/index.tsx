@@ -20,17 +20,19 @@ export function Home () {
     }
 
     // Conceito de imutabilidade
+    // prevState = pega o valor atual do array e adiciona o novo valor a ele através da desestruturação
     setParticipants(prevState => [...prevState, participantName]); 
     setParticipantName('');
     
   }
 
-  function handleParticipantRemove (participant: string) {
+  function handleParticipantRemove (name: string) {
 
-    Alert.alert("Remover",`Deseja remover o participante ${participant}?`, [
+    Alert.alert("Remover",`Deseja remover o participante ${name}?`, [
       {
         text: 'Sim',
-        onPress: () => Alert.alert('Participante excluído!')
+        onPress: () => setParticipants
+        (prevState => prevState.filter(participant => participant !== name))
       },
       {
         text: 'Não',
@@ -38,7 +40,7 @@ export function Home () {
       }
     ])
 
-    console.log(`Você clicou em remover o participante ${participant}`);
+    console.log(`Você clicou em remover o participante ${name}`);
     
   }
 
