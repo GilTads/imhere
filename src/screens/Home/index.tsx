@@ -16,7 +16,7 @@ export function Home () {
   function handleParticipantAdd () {
 
     if (participants.includes(participantName)) {
-      return Alert.alert("Participante já existe", "Já existe um participante na lista com esse nome" )
+      return Alert.alert("Ops...", "Já existe um participante na lista com esse nome" )
     }
 
     // Conceito de imutabilidade
